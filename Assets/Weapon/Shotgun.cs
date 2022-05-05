@@ -4,18 +4,25 @@ namespace Weapon
 {
 	public class Shotgun : Weapon
 	{
-		public override void Awake()
+		protected override void SetMaxBulletAmount()
 		{
-			reloadingTime = 1;
+			maxAmmoAmount = 30;
+		}
+
+		protected override void SetReloadingTime()
+		{
+			reloadingTime = 1f;
 		}
 
 		protected override void CreateBullets()
 		{
 			var spreadAngle = 4;
-			var bulletsCount = 5;
-			for (var i = 0; i < bulletsCount; i++)
+			var maxBulletsFired = 5;
+			var bulletsFired = currentAmmoAmount >= maxBulletsFired ? maxBulletsFired : currentAmmoAmount;
+			for (var i = 0; i < bulletsFired; i++)
 			{
 				var bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+				currentAmmoAmount--;
 				var spread = firePoint.up * fireForce;
 				spread.x += Random.Range(-spreadAngle, spreadAngle);
 				spread.y += Random.Range(-spreadAngle, spreadAngle);

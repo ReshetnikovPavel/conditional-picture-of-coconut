@@ -99,7 +99,7 @@ namespace GridTools
         }
 
         private static void OpenNode(PathNode toOpenNode, int2 neighborNode,
-            int2 gridSize, ICollection<int> visited, PathNode[] pathNodeArray, ISet<int> openNodes)
+            int2 gridSize, ICollection<int> visited, PathNode[] pathNodeArray, ISet<int> openNodes, int maxDeep)
         {
             var nextToOpenPosition = new int2(toOpenNode.X + neighborNode.x, toOpenNode.Y + neighborNode.y);
             var toOpenPosition = new int2(toOpenNode.X, toOpenNode.Y);
@@ -112,7 +112,7 @@ namespace GridTools
                 return;
 
             var tentativeGCost = toOpenNode.GCost + GetDistanceCost(toOpenPosition, nextToOpenPosition);
-            if (tentativeGCost >= nextToOpenNode.GCost)
+            if (tentativeGCost >= nextToOpenNode.GCost || tentativeGCost > maxDeep * MoveStraightCost)
                 return;
 
             nextToOpenNode.PreviousIndex = toOpenNode.Index;
@@ -156,7 +156,7 @@ namespace GridTools
             return result;
         }
 
-        public List<int2> FindPathAStar(Grid grid, int2 startPosition, int2 endPosition)
+        public List<int2> FindPathAStar(Grid grid, int2 startPosition, int2 endPosition, int maxDeep=15)
         {
             var gridSize = new int2(grid.Width, grid.Height);
 
@@ -187,7 +187,7 @@ namespace GridTools
                 visited.Add(toOpenNode.Index);
 
                 foreach (var neighborNode in neighboringPosition)
-                    OpenNode(toOpenNode, neighborNode, gridSize, visited, pathNodeArray, openNodes);
+                    OpenNode(toOpenNode, neighborNode, gridSize, visited, pathNodeArray, openNodes, maxDeep);
             }
 
             var endNode = pathNodeArray[endNodeIndex];

@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2234180e-cf90-49dc-97cd-d22b8971c51c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SandboxProject/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SandboxProject/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Enemies/SimpleEnemyAI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Enemies/SimpleEnemyAI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Player/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Player/PlayerController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Health/MedKit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Health/MedKit.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,9 +25,15 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Health/HealthObj.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Bullet/LaserAmmoPickUp.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Bullet/ShotgunBullet.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0d2eba3ab4724e709ab1d40ddbd9cb073800/9b/3e8e818c/NativeInputSystem.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Bullet/PistolAmmoPickUp.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Player/PlayerObj.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/cafb29d5233847fbb4edcf8d7c32b1e3299c90/93/b519fe6a/List`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3be1a7ff939c43f181c0a10b5a0189ac13c800/76/d8bbeefb/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3be1a7ff939c43f181c0a10b5a0189ac13c800/81/706e3a9d/Component.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Player/PlayerLogic.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Health/HealthBar.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3be1a7ff939c43f181c0a10b5a0189ac13c800/17/4cf72f64/Transform.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="27EnJZhJ0yvWQwNVuM4aAeiyGSK" />
@@ -38,7 +42,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.23607177" />
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.21780822" />
     <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.0" />
     <property name="Discover.Launch.Via.Unity" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
@@ -58,10 +62,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="31916">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="31916" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -87,6 +91,9 @@
       <workItem from="1649970749500" duration="596000" />
       <workItem from="1650479467206" duration="1813000" />
       <workItem from="1650536176156" duration="2689000" />
+      <workItem from="1650962048154" duration="4743000" />
+      <workItem from="1651071609022" duration="12779000" />
+      <workItem from="1651728190929" duration="5950000" />
     </task>
     <servers />
   </component>
@@ -114,17 +121,69 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Weapon/Laser.cs</url>
-          <line>28</line>
-          <properties documentPath="C:\Users\hp\SandboxProject\Assets\Weapon\Laser.cs" initialLine="28" containingFunctionPresentation="method 'Fire'">
+          <url>file://$PROJECT_DIR$/Assets/Bullet/PistolAmmoPickUp.cs</url>
+          <line>13</line>
+          <properties documentPath="C:\Users\hp\SandboxProject\Assets\Bullet\AmmoPickUp.cs" initialLine="13" containingFunctionPresentation="method 'OnTriggerEnter2D'">
             <startOffsets>
-              <option value="542" />
+              <option value="367" />
             </startOffsets>
             <endOffsets>
-              <option value="543" />
+              <option value="384" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="11" />
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Bullet/PistolAmmoPickUp.cs</url>
+          <line>10</line>
+          <properties documentPath="C:\Users\hp\SandboxProject\Assets\Bullet\PistolAmmoPickUp.cs" initialLine="10" containingFunctionPresentation="method 'OnTriggerEnter2D'">
+            <startOffsets>
+              <option value="202" />
+            </startOffsets>
+            <endOffsets>
+              <option value="203" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Bullet/AmmoPickUp.cs</url>
+          <line>11</line>
+          <properties documentPath="C:\Users\hp\SandboxProject\Assets\Bullet\AmmoPickUp.cs" initialLine="11" containingFunctionPresentation="method 'PickUp'">
+            <startOffsets>
+              <option value="207" />
+            </startOffsets>
+            <endOffsets>
+              <option value="208" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Player/Character.cs</url>
+          <line>42</line>
+          <properties documentPath="C:\Users\hp\SandboxProject\Assets\Player\Character.cs" initialLine="40" containingFunctionPresentation="method 'Die'">
+            <startOffsets>
+              <option value="1024" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1025" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="73" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Weapon/Laser.cs</url>
+          <line>105</line>
+          <properties documentPath="C:\Users\hp\SandboxProject\Assets\Weapon\Laser.cs" initialLine="105" containingFunctionPresentation="method 'Damage'">
+            <startOffsets>
+              <option value="2176" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2177" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="79" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

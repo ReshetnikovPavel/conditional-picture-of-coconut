@@ -29,6 +29,9 @@ namespace Extensions
     {
         public static Vector3 ToVector3(this float2 vector3)
             => new Vector3(vector3.x, vector3.y);
+
+        public static Vector2 ToVector2(this float2 vector3)
+            => new Vector2(vector3.x, vector3.y);
     }
 
     public static class Int2Extension

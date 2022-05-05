@@ -2,7 +2,7 @@
 {
 	public enum PlayerState
 	{
-		Idle,
+		Normal,
 		//Moving,
 		//Dashing,
 		//Shooting,
