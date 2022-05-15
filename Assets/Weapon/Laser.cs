@@ -10,18 +10,23 @@ namespace Weapon
 	{
 		public LineRenderer lineRenderer;
 		private float maxDistance = 100;
-		public PlayerLogic playerLogic;
+		public Character character;
 		private int damageAmount = 1;
 		private RaycastHit2D hit;
 
-		public override void Awake()
+		protected override void SetMaxBulletAmount()
+		{
+			maxAmmoAmount = 10;
+		}
+
+		protected override void SetReloadingTime()
 		{
 			reloadingTime = 0.2f;
 		}
 
 		public void Update()
 		{
-			if (playerLogic.State != PlayerState.Idle)
+			if (character.State != PlayerState.Normal)
 				TurnLaserOff();
 		}
 		
@@ -29,15 +34,34 @@ namespace Weapon
 		{
 			if (!isButtonPressed)
 				return;
-			CastRay();
+			
 			switch (state)
 			{
-				case WeaponState.Ready when isButtonPressed:
-					Damage();
-					reloadStart = Time.time;
-					state = WeaponState.Reloading;
+				case WeaponState.Ready:
+					switch (ammoState)
+					{
+						case AmmoState.Empty:
+							TurnLaserOff();
+							break;
+						case AmmoState.Full:
+						case AmmoState.Normal:
+							ammoState = AmmoState.Normal;
+							CastRay();
+							Damage();
+							currentAmmoAmount--;
+
+							if (currentAmmoAmount <= 0)
+								ammoState = AmmoState.Empty;
+							
+							reloadStart = Time.time;
+							state = WeaponState.Reloading;
+							break;
+						default:
+							throw new ArgumentOutOfRangeException();
+					}
 					break;
 				case WeaponState.Reloading:
+					CastRay();
 					timeDifference = Time.time - reloadStart;
 					if (Time.time - reloadStart >= reloadingTime)
 						state = WeaponState.Ready;
@@ -82,8 +106,8 @@ namespace Weapon
 		{
 			if (hit.collider == null)
 				return;
-			if (hit.collider.GetComponent<HealthObj>())
-				hit.collider.GetComponent<HealthObj>().Health.Damage(damageAmount);
+			if (hit.collider.GetComponentInChildren<HealthObj>())
+				hit.collider.GetComponentInChildren<HealthObj>().Damage(damageAmount);
 		}
 	}
 }

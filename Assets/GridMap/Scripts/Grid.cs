@@ -30,7 +30,7 @@ public class Grid
         gridArray = new GridCell[width, height];
     }
     public bool isWalkable(int x, int y)
-        => gridArray[x, y] == GridCell.Walkable;
+        => IsInGrid(new int2(x, y)) && gridArray[x, y] == GridCell.Walkable;
 
     public float2 GridToWorldPosition(float2 gridPosition)
         => gridPosition * CellSize + position;

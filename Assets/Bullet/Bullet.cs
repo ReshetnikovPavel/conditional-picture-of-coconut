@@ -1,11 +1,12 @@
 using System;
+using Player;
 using UnityEngine;
 
 namespace Bullet
 {
     public class Bullet : MonoBehaviour
     {
-        private int damageAmount = 1;
+        [SerializeField]protected int damageAmount = 1;
         private void Update()
         {
             Destroy(gameObject, 5);
@@ -18,11 +19,14 @@ namespace Bullet
                 Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
                 return;
             }
-
-            if (collision.collider.GetComponent<HealthObj>())
-                collision.collider.GetComponent<HealthObj>().Health.Damage(damageAmount);
-
+            Damage(collision);
             Destroy(gameObject);
+        }
+
+        protected virtual void Damage(Collision2D collision)
+        {
+            if (collision.collider.GetComponentInChildren<HealthObj>())
+                collision.collider.GetComponentInChildren<HealthObj>().Damage(damageAmount);
         }
     }
 }

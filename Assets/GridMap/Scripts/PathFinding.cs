@@ -91,15 +91,15 @@ namespace GridTools
         {
             var neighboringPosition = new List<int2>();
             for (var dy = -1; dy <= 1; dy++)
-            for (var dx = -1; dx <= 1; dx++)
-                if (dx != 0 || dy != 0)
-                    neighboringPosition.Add(new int2(dx, dy));
+                for (var dx = -1; dx <= 1; dx++)
+                    if (dx != 0 || dy != 0)
+                        neighboringPosition.Add(new int2(dx, dy));
 
             return neighboringPosition;
         }
 
         private static void OpenNode(PathNode toOpenNode, int2 neighborNode,
-            int2 gridSize, ICollection<int> visited, PathNode[] pathNodeArray, ISet<int> openNodes)
+            int2 gridSize, ICollection<int> visited, PathNode[] pathNodeArray, ISet<int> openNodes, int maxDeep)
         {
             var nextToOpenPosition = new int2(toOpenNode.X + neighborNode.x, toOpenNode.Y + neighborNode.y);
             var toOpenPosition = new int2(toOpenNode.X, toOpenNode.Y);
@@ -112,7 +112,7 @@ namespace GridTools
                 return;
 
             var tentativeGCost = toOpenNode.GCost + GetDistanceCost(toOpenPosition, nextToOpenPosition);
-            if (tentativeGCost >= nextToOpenNode.GCost)
+            if (tentativeGCost >= nextToOpenNode.GCost || tentativeGCost > maxDeep * MoveStraightCost)
                 return;
 
             nextToOpenNode.PreviousIndex = toOpenNode.Index;
@@ -127,7 +127,7 @@ namespace GridTools
         {
             if (endNode.PreviousIndex == -1)
                 return null;
-            var result = new List<int2> {new int2(endNode.X, endNode.Y)};
+            var result = new List<int2> { new int2(endNode.X, endNode.Y) };
             var currentNode = endNode;
             while (currentNode.PreviousIndex != -1)
             {
@@ -141,13 +141,13 @@ namespace GridTools
 
         public static List<int2> GetClearPath(List<int2> path)
         {
-            var result = new List<int2> {path[0]};
+            var result = new List<int2> { path[0] };
             var lastDirection = path[1] - path[0];
             for (var i = 1; i < path.Count; i++)
             {
                 if (lastDirection.IsEqual(path[i] - path[i - 1])) continue;
                 lastDirection = path[i] - path[i - 1];
-                result.Add(path[i-1]);
+                result.Add(path[i - 1]);
             }
 
             if (lastDirection.IsEqual(path[path.Count - 1] - path[path.Count - 2]))
@@ -156,7 +156,7 @@ namespace GridTools
             return result;
         }
 
-        public List<int2> FindPathAStar(Grid grid, int2 startPosition, int2 endPosition)
+        public List<int2> FindPathAStar(Grid grid, int2 startPosition, int2 endPosition, int maxDeep = 15)
         {
             var gridSize = new int2(grid.Width, grid.Height);
 
@@ -187,7 +187,7 @@ namespace GridTools
                 visited.Add(toOpenNode.Index);
 
                 foreach (var neighborNode in neighboringPosition)
-                    OpenNode(toOpenNode, neighborNode, gridSize, visited, pathNodeArray, openNodes);
+                    OpenNode(toOpenNode, neighborNode, gridSize, visited, pathNodeArray, openNodes, maxDeep);
             }
 
             var endNode = pathNodeArray[endNodeIndex];

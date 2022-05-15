@@ -101,9 +101,12 @@ MonoBehaviour:
   firePoint: {fileID: 6893399684011813230}
   fireForce: 20
   state: 0
-  reloadingTime: 0
+  ammoState: 0
+  reloadingTime: 1
   reloadStart: 0
-  d: 0
+  timeDifference: 0
+  maxAmmoAmount: 20
+  currentAmmoAmount: 0
 --- !u!1 &6893399684011813231
 GameObject:
   m_ObjectHideFlags: 0

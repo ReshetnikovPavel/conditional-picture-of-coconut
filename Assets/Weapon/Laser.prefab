@@ -230,8 +230,11 @@ MonoBehaviour:
   firePoint: {fileID: 96757034059110791}
   fireForce: 20
   state: 0
-  reloadingTime: 0
+  ammoState: 0
+  reloadingTime: 0.1
   reloadStart: 0
-  d: 0
+  timeDifference: 0
+  maxAmmoAmount: 30
+  currentAmmoAmount: 0
   lineRenderer: {fileID: 4469720436483342985}
-  playerLogic: {fileID: 0}
+  character: {fileID: 0}
